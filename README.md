@@ -7,7 +7,7 @@ A convolutional neural network for recognising handwritten digits, trained on MN
 | Model          | Test Accuracy (MNIST) | Custom test set (6 digits) |
 |----------------|-----------------------|----------------------------|
 | CNN            | ~99%                  | 6/6 correct                |
-| Dense baseline | ~97%                  | ?/6 correct                |
+| Dense baseline | ~97%                  | 5/6 correct                |
 
 The CNN uses two Conv2D + MaxPooling blocks with dropout regularisation, followed by a fully connected classifier head. Trained for 5 epochs with the Adam optimiser and sparse categorical crossentropy loss.
 
@@ -15,7 +15,18 @@ The CNN uses two Conv2D + MaxPooling blocks with dropout regularisation, followe
 
 **CNN:**
 
-Input (28×28×1) → Conv2D(32, 3×3, ReLU) → MaxPool(2×2) → Dropout(0.25) → Conv2D(64, 3×3, ReLU) → MaxPool(2×2) → Dropout(0.25) → Flatten → Dense(128, ReLU) → Dropout(0.5) → Dense(10, softmax)
+| Layer | Details |
+|-------|---------|
+| Input | 28×28×1 |
+| Conv2D | 32 filters, 3×3, ReLU |
+| MaxPooling | 2×2 |
+| Dropout | 0.25 |
+| Conv2D | 64 filters, 3×3, ReLU |
+| MaxPooling | 2×2 |
+| Dropout | 0.25 |
+| Dense | 128 units, ReLU |
+| Dropout | 0.5 |
+| Output | 10 units, softmax |
 
 ## Running it
 
