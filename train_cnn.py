@@ -66,13 +66,14 @@ else:
 
 #Load custom images and predict
 def predict_custom_images(correct_predictions, incorrect_predictions):
+    images = []
+    titles = []
     image_number = 1
     while os.path.isfile(f'digits/digit{image_number}.png'):
         try:
-            #Load and preprocess custom images
             img = cv2.imread(f'digits/digit{image_number}.png', cv2.IMREAD_GRAYSCALE) #Reads image in greyscale to match MNIST regulations
             img = cv2.resize(img, (28, 28)) #Resizes the image to 28x28 pixels
-            img = np.invert(img) #Inverts the image - white digits and black background
+            img = np.invert(img) #Inverts the image - white digits on black background
             img_array = np.array(img) / 255.0  #Normalize - scales pixel values to [0,1]
             img_array = img_array.reshape(1, 28, 28, 1)  #Reshape for CNN input
 
@@ -85,17 +86,22 @@ def predict_custom_images(correct_predictions, incorrect_predictions):
             else:
                 incorrect_predictions += 1
 
-            #Display the image
-            plt.imshow(img_array[0, :, :, 0], cmap=plt.cm.binary)
-            plt.title(f"Prediction: {predicted_digit}")
-            plt.show()
-            input("Press Enter to proceed to the next image...")
-
-
+            images.append(img_array[0, :, :, 0])
+            titles.append(f"Prediction: {predicted_digit}")
             image_number += 1
         except Exception as e:
             print(f"Error reading image digit{image_number}.png: {e}")
             image_number += 1
+
+    fig, axes = plt.subplots(1, len(images), figsize=(2 * len(images), 3))
+    if len(images) == 1:
+        axes = [axes]
+    for ax, img, title in zip(axes, images, titles):
+        ax.imshow(img, cmap=plt.cm.binary)
+        ax.set_title(title)
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
 
     return correct_predictions, incorrect_predictions
 

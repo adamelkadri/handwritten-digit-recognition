@@ -64,27 +64,38 @@ else:
 
 # Load custom images and predict them
 def predict_custom_images(correct_predictions, incorrect_predictions):
+    images = []
+    titles = []
     image_number = 1
     while os.path.isfile('digits/digit{}.png'.format(image_number)):
         try:
             img = cv2.imread('digits/digit{}.png'.format(image_number))[:,:,0]
-            img = np.invert(np.array([img])) #inverts pixel values - white digits on black background
-            prediction = model.predict(img) #predicts the probabilities for each digit (0-9)
-            predicted_digit = np.argmax(prediction) #returns the index with the highest probability
+            img = np.invert(np.array([img]))
+            prediction = model.predict(img)
+            predicted_digit = np.argmax(prediction)
             print(f"Image digit{image_number}.png: Predicted Digit = {predicted_digit}")
 
             if predicted_digit == values[image_number - 1]:
                 correct_predictions += 1
             else:
                 incorrect_predictions += 1
-            plt.imshow(img[0], cmap=plt.cm.binary)
-            plt.title(f"Prediction: {predicted_digit}")
-            plt.show()
-            input("Press Enter to proceed to next image...")
+
+            images.append(img[0])
+            titles.append(f"Prediction: {predicted_digit}")
             image_number += 1
         except:
             print("Error reading image! Proceeding with next image...")
             image_number += 1
+
+    fig, axes = plt.subplots(1, len(images), figsize=(2 * len(images), 3))
+    if len(images) == 1:
+        axes = [axes]
+    for ax, img, title in zip(axes, images, titles):
+        ax.imshow(img, cmap=plt.cm.binary)
+        ax.set_title(title)
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
 
     return correct_predictions, incorrect_predictions
 
