@@ -44,7 +44,8 @@ python gui.py
 
 A Tkinter canvas lets you draw a digit with the mouse; pressing Predict runs the CNN on the drawing (normalised and resized to 28×28) and displays the predicted digit along with confidence.
 
-<img src="assets/screenshot_1.png" width="300"/> <img src="assets/screenshot_8.png" width="300"/>
+<img src="assets/screenshot_1.png" alt="GUI predicting 1 with 99.95% confidence" width="300"/>
+<img src="assets/screenshot_8.png" alt="GUI predicting 8 with 99.44% confidence" width="300"/>
 
 ## Files
 
