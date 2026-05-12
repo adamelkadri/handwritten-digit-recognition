@@ -9,6 +9,12 @@ A convolutional neural network for recognising handwritten digits, trained on MN
 | CNN            | ~99%                  | 6/6 correct                |
 | Dense baseline | ~97%                  | 5/6 correct                |
 
+The CNN wins because:
+
+* Convolutional filters learn local spatial features (edges, curves, stroke junctions) directly from the 2D image, while the dense baseline flattens the input and loses that structure.
+* Pooling adds a degree of translation tolerance, so a digit shifted a few pixels still activates the same features. This helps on the hand-drawn test images where stroke placement varies.
+* Shared filter weights mean fewer parameters do more work, so the CNN generalises better on the same training budget.
+
 The CNN uses two Conv2D + MaxPooling blocks with dropout regularisation, followed by a fully connected classifier head. Trained for 5 epochs with the Adam optimiser and sparse categorical crossentropy loss.
 
 ## Architecture
