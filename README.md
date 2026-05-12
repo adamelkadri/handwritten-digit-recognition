@@ -49,7 +49,7 @@ A Tkinter canvas lets you draw a digit with the mouse; pressing Predict runs the
 
 ## Files
 
-- `train_cnn.py` — trains the CNN and saves `cnn_handwritten_digits.keras`
-- `train_dense.py` — trains a simpler dense baseline for comparison
+- `train_cnn.py` — trains the CNN and saves `handwritten_digits.keras`
+- `train_dense.py` — trains a simpler dense baseline and saves `dense_handwritten_digits.keras`
 - `gui.py` — drawing canvas with real-time prediction
 - `digits/` — six handwritten test images used to evaluate the trained models

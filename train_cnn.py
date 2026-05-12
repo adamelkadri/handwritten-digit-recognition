@@ -55,13 +55,13 @@ if train_new_model:
     model.fit(X_train, y_train, epochs=5, validation_data=(X_test, y_test))
 
     #Saving the trained model
-    model.save('cnn_handwritten_digits.keras')
+    model.save('handwritten_digits.keras')
 
     #Evaluate the model
     loss, accuracy = model.evaluate(X_test, y_test)
     print(f"Test Accuracy: {accuracy}")
 else:
-    model = tf.keras.models.load_model('cnn_handwritten_digits.keras')
+    model = tf.keras.models.load_model('handwritten_digits.keras')
 
 
 #Load custom images and predict

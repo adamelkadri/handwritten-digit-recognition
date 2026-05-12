@@ -5,7 +5,7 @@ from PIL import Image, ImageOps, ImageDraw #for image pre-processing
 import tensorflow as tf #used to load pre-trained cnn model
 
 #Load the trained CNN model
-model = tf.keras.models.load_model('cnn_handwritten_digits.keras')
+model = tf.keras.models.load_model('handwritten_digits.keras')
 
 #Create main application window
 app = tk.Tk()
