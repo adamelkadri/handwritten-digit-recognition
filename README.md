@@ -2,6 +2,8 @@
 
 A convolutional neural network for recognising handwritten digits, trained on MNIST and deployable via an interactive drawing canvas.
 
+This branch is used to test the AI code review workflow.
+
 ## Results
 
 | Model          | Test Accuracy (MNIST) | Custom test set (6 digits) |
